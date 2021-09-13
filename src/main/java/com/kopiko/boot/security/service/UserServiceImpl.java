@@ -1,6 +1,8 @@
 package com.kopiko.boot.security.service;
 
+import com.kopiko.boot.security.entity.Role;
 import com.kopiko.boot.security.entity.User;
+import com.kopiko.boot.security.repository.RoleRepository;
 import com.kopiko.boot.security.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -14,6 +16,9 @@ public class UserServiceImpl implements UserService {
 
     @Autowired
     private UserRepository userRepository;
+
+    @Autowired
+    private RoleRepository roleRepository;
 
 
     @Override
@@ -44,6 +49,11 @@ public class UserServiceImpl implements UserService {
     @Override
     public User findByUsername(String username) {
         return userRepository.findByUsername(username);
+    }
+
+    @Override
+    public List<Role> findAll() {
+        return roleRepository.findAll();
     }
 
 

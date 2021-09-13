@@ -8,6 +8,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.security.Principal;
+import java.util.ArrayList;
 import java.util.List;
 
 @Controller
@@ -37,6 +38,7 @@ public class UserController {
     public String allUsers(Model model) {
         List<User> users = userService.allUsers();
         model.addAttribute("usersList", users);
+        model.addAttribute("roles", userService.findAll());
         return "users";
     }
 

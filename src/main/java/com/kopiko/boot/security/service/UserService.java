@@ -1,6 +1,7 @@
 package com.kopiko.boot.security.service;
 
 
+import com.kopiko.boot.security.entity.Role;
 import com.kopiko.boot.security.entity.User;
 
 import java.util.List;
@@ -13,4 +14,5 @@ public interface UserService {
     void editUser(User user);
     User getById(int id);
     User findByUsername(String username);
+    List<Role> findAll();
 }
