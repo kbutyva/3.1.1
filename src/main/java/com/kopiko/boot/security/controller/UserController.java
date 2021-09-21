@@ -3,12 +3,12 @@ package com.kopiko.boot.security.controller;
 import com.kopiko.boot.security.entity.User;
 import com.kopiko.boot.security.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.security.Principal;
-import java.util.ArrayList;
 import java.util.List;
 
 @Controller
@@ -28,8 +28,8 @@ public class UserController {
     }
 
     @GetMapping("user")
-    public String user(Model model, Principal principal) {
-        User user = userService.findByUsername(principal.getName());
+    public String user(Model model) {
+        User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         model.addAttribute("user", user);
         return "user";
     }
